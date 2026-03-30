@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "GIF Accessibility Reader",
+  "version": "3.0",
+  "description": "Adds AI-generated alt text to GIFs using Florence-2-base-ft on WebGPU.",
+  "permissions": ["scripting", "activeTab", "offscreen", "downloads"],
+  "host_permissions": ["<all_urls>"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
